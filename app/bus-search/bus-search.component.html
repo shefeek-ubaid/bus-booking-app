@@ -1,0 +1,34 @@
+<h3>Bus Search</h3>
+
+<div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="From" [(ngModel)]="from">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="To" [(ngModel)]="to">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="date" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button color='primary' (click)='searchBus()'>Search</button>
+  </div>
+
+  <mat-form-field>
+    <mat-select placeholder="Get/Post">
+      <mat-option routerLink='get' value="get">
+        GET
+      </mat-option>
+    
+    <mat-option routerLink='post' value="post">
+        POST
+      </mat-option>
+      <mat-option routerLink='temp' value="post">
+        Template Form
+      </mat-option>
+      <mat-option routerLink='reactive' value="post">
+        Reactive Form
+      </mat-option>
+    </mat-select>
+  </mat-form-field>

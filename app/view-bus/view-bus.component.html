@@ -1,0 +1,40 @@
+<p [ngStyle]='getstyle()'>
+  Buses
+</p>
+<p [style.color]='getstyle().color' [hidden]= 'true'>
+  Buses
+</p>
+<div *ngIf='selectedBuses.length > 0 else error'>
+    <div *ngFor='let bus of selectedBuses'>
+        <mat-card>
+          <mat-card-title>{{bus.Name}}</mat-card-title>
+          <mat-card-content>
+              <br>
+              From: {{selectedRoute.From}} To: {{selectedRoute.To}} <br>
+              Date: {{selectedRoute.Date}}
+              <div *ngFor='let seat of bus.Seats'>
+                
+                <mat-checkbox [(ngModel)]= 'seat.IsBooked' [disabled] = 'seat.UserId!=0' (change) = 'selectSeat()'>
+                    {{seat.SeatNo}} - Fare : {{seat.Fare|currency:'INR'}} 
+                </mat-checkbox> 
+              </div>
+          </mat-card-content>
+        </mat-card>
+
+     </div>
+
+<br>
+{{totalAmount|currency:'INR'}}
+<br>
+
+<button (click) = 'MakePayment()'> Proceed to Pay </button>
+</div>
+
+
+<ng-template #error>
+<h1>No Buses Found For This Route!</h1>
+</ng-template>
+<app-proj>
+<div slot1>Hi</div>
+<div slot2>Hello</div>
+</app-proj>

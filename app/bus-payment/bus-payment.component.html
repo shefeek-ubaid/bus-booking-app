@@ -1,0 +1,32 @@
+<h3>
+  bus-payment!
+</h3>
+
+Amount: {{ totalAmount|currency:'INR' }}<br>
+
+GST%: {{GST}} <br>
+
+TotalAmount: {{ (totalAmount|tax : GST) |currency:'INR' }} <br>
+<button (click)="changeValue()">Click</button><br>
+<select [(ngModel)]='paymentMode'>
+<option [value] = 1>Internet Banking</option>
+<option [value] = 2>Credit Card</option>
+<option [value] = 3>COD</option>
+</select>
+
+<!---<br>
+  <input type="radio" [value] = 1 [(ngModel)]='paymentMode'/> Internet Banking<br>
+  <input type="radio" [value] = 2 [(ngModel)]='paymentMode'/> Credit Card<br>
+  <input type="radio" [value] = 3 [(ngModel)]='paymentMode'/> COD<br>
+<br> -->
+<div [ngSwitch]='paymentMode'>
+<div *ngSwitchCase='1'>
+<app-i-net-banking [totalAmount] = 'totalAmount' (payEve) = 'paymentValidate($event)' ></app-i-net-banking>
+</div>
+<div *ngSwitchCase='2'>
+ <app-credit-card (payEve) = 'paymentValidate($event)'></app-credit-card>
+</div>
+<div *ngSwitchDefault>
+<app-cod [data]='data' (payEve) = 'paymentValidate($event)'></app-cod>
+</div>
+</div>

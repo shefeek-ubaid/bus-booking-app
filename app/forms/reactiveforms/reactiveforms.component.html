@@ -1,0 +1,13 @@
+<p>
+  reactive form!
+</p>
+<form [formGroup]="reactForm" (ngSubmit)="savedata(reactForm)"><br>
+  Name:<input type="text"  formControlName="name"><br>
+  <em style="color: red" *ngIf="reactForm.get('name').hasError('required') && name?.touched">Name is required</em><br>
+  Age:<input type="text"><br>
+  Email:<input type="email" formControlName="email"><br>
+  <em style="color: red" *ngIf="reactForm.get('email').hasError('validUrl')">Invalid Email</em><br>
+  <!-- <em style="color: red" *ngIf="reactForm.get('email').hasError('required') && email?.touched">Email is required</em><br>
+  <em style="color: red" *ngIf="reactForm.get('email').hasError('email')">Invalid Email</em><br> -->
+<input [disabled] = "reactForm.invalid" type="submit">
+</form>

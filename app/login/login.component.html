@@ -1,0 +1,11 @@
+<p>
+  login
+</p>
+
+UserName: <input type="text" [(ngModel)]="userName" >
+Password: <input type="password" [(ngModel)]="pass" >
+<div *ngIf='errorMsgShow'>
+  <span style="color: red;">Incorrect Password/Username</span>
+</div>
+
+<button (click)="validateUser()"> Login </button>
